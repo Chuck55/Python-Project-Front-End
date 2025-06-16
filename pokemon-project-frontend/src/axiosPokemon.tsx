@@ -1,19 +1,9 @@
 import axios from "axios";
-
+import type { PokemonForm, UserForm } from "./interface";
 const backendPath = "http://127.0.0.1:5000/";
 
-interface PokemonForm {
-  pokemon_name: string;
-  count: number;
-  user_id: number;
-}
-
 export function get_all_pokemon_for_user() {
-  return axios.get(backendPath + "get_all_pokemon_for_user", {
-    params: {
-      user_id: 1,
-    },
-  });
+  return axios.get(backendPath + "get_all_pokemon_for_user");
 }
 
 export function submit_pokemon_axios(form: PokemonForm) {
@@ -28,5 +18,18 @@ export function remove_pokemon_axios(pokemon_name: string, user_id: number) {
   return axios.post(backendPath + "delete_pokemon", {
     pokemon_name: pokemon_name,
     user_id: user_id,
+  });
+}
+
+export function get_all_users() {
+  return axios.get(backendPath + "get_all_users");
+}
+
+export function submit_user(form: UserForm) {
+  return axios.post(backendPath + "save_user_details", {
+    username: form.user_name,
+    email: form.email,
+    first_name: form.first_name,
+    last_name: form.last_name,
   });
 }
