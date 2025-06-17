@@ -67,10 +67,24 @@ const PokemonGrid = ({
 
   return (
     <>
-      {" "}
       <div>
-        <div style={{ textAlign: "right" }}>
-          <select value="" name="user_id" onChange={changeTableValues}>
+        <div>
+          <p className="fs-2 fw-bold">Pokemon</p>
+        </div>
+        <div
+          style={{
+            marginLeft: "auto",
+            width: "30%",
+            display: "flex",
+            gap: "8px",
+          }}
+        >
+          <p className="fw-bold">Users:</p>
+          <select
+            name="user_id"
+            onChange={changeTableValues}
+            className="form-select"
+          >
             <option value=""></option>
             {userList.map((user) => (
               <option key={user.id} value={user.id}>
@@ -79,7 +93,6 @@ const PokemonGrid = ({
             ))}
           </select>
         </div>
-
         <table className="table table-bordered">
           <thead>
             <tr>
@@ -102,6 +115,7 @@ const PokemonGrid = ({
               <td>
                 <input
                   type="number"
+                  min="0"
                   name="count"
                   value={form.count}
                   onChange={handleFormChange}
@@ -139,7 +153,12 @@ const PokemonGrid = ({
               <tr key={pokemon.id}>
                 <td>{pokemon.pokemon_name}</td>
                 <td>{pokemon.count}</td>
-                <td>{pokemon.user_id}</td>
+                <td>
+                  {
+                    userList.filter((user) => user.id == pokemon.user_id)[0]
+                      .username
+                  }
+                </td>
                 <td>
                   <button
                     className="btn btn-danger"

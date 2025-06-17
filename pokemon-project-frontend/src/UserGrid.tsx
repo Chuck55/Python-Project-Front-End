@@ -32,74 +32,77 @@ const UserGrid = ({ user_list, setError, setClicked }: Props) => {
   };
 
   return (
-    <table className="table table-bordered">
-      <thead>
-        <tr>
-          <th>User Name</th>
-          <th>Email</th>
-          <th>First Name</th>
-          <th>Last Name</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>
-            <input
-              type="string"
-              value={form.user_name}
-              name="user_name"
-              onChange={handleFormChange}
-            ></input>
-          </td>
-          <td>
-            <input
-              type="email"
-              value={form.email}
-              name="email"
-              onChange={handleFormChange}
-            ></input>
-          </td>
-          <td>
-            <input
-              type="string"
-              value={form.first_name}
-              name="first_name"
-              onChange={handleFormChange}
-            ></input>
-          </td>
-          <td>
-            <input
-              type="string"
-              value={form.last_name}
-              name="last_name"
-              onChange={handleFormChange}
-            ></input>
-          </td>
-          <td>
-            <button
-              className="btn btn-primary"
-              onClick={submitUser}
-              disabled={
-                form.email == "" ||
-                form.first_name == "" ||
-                form.last_name == "" ||
-                form.user_name == ""
-              }
-            >
-              Submit
-            </button>
-          </td>
-        </tr>
-        {user_list.map((user) => (
-          <tr key={user.id}>
-            <td>{user.username}</td>
-            <td>{user.email}</td>
-            <td>{user.first_name}</td>
-            <td>{user.last_name}</td>
+    <>
+      <p className="fs-2 fw-bold">Users</p>
+      <table className="table table-bordered">
+        <thead>
+          <tr>
+            <th>User Name</th>
+            <th>Email</th>
+            <th>First Name</th>
+            <th>Last Name</th>
           </tr>
-        ))}
-      </tbody>
-    </table>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <input
+                type="string"
+                value={form.user_name}
+                name="user_name"
+                onChange={handleFormChange}
+              ></input>
+            </td>
+            <td>
+              <input
+                type="email"
+                value={form.email}
+                name="email"
+                onChange={handleFormChange}
+              ></input>
+            </td>
+            <td>
+              <input
+                type="string"
+                value={form.first_name}
+                name="first_name"
+                onChange={handleFormChange}
+              ></input>
+            </td>
+            <td>
+              <input
+                type="string"
+                value={form.last_name}
+                name="last_name"
+                onChange={handleFormChange}
+              ></input>
+            </td>
+            <td>
+              <button
+                className="btn btn-primary"
+                onClick={submitUser}
+                disabled={
+                  form.email == "" ||
+                  form.first_name == "" ||
+                  form.last_name == "" ||
+                  form.user_name == ""
+                }
+              >
+                Submit
+              </button>
+            </td>
+          </tr>
+          {user_list.map((user) => (
+            <tr key={user.id}>
+              <td>{user.username}</td>
+              <td>{user.email}</td>
+              <td>{user.first_name}</td>
+              <td>{user.last_name}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </>
   );
 };
 
